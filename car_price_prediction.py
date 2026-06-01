@@ -1,9 +1,6 @@
-# ============================================================
-#   CAR PRICE PREDICTION WITH MACHINE LEARNING
-#   Dataset: car_data.csv  |  Model: Random Forest Regressor
-# ============================================================
 
-# ── 1. IMPORT LIBRARIES ──────────────────────────────────────
+#   CAR PRICE PREDICTION WITH MACHINE LEARNING
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -18,7 +15,6 @@ print("=" * 55)
 print("   CAR PRICE PREDICTION — Machine Learning Project")
 print("=" * 55)
 
-# ── 2. LOAD DATASET ──────────────────────────────────────────
 df = pd.read_csv("car_data.csv")
 
 print("\n📦 Dataset loaded successfully!")
@@ -26,7 +22,7 @@ print(f"   Rows: {df.shape[0]}  |  Columns: {df.shape[1]}")
 print("\nFirst 5 rows:")
 print(df.head())
 
-# ── 3. BASIC DATA EXPLORATION ────────────────────────────────
+# ──  BASIC DATA EXPLORATION ───────
 print("\n📊 Dataset Info:")
 print(df.info())
 
@@ -36,14 +32,10 @@ print(df.describe())
 print("\n🔍 Missing Values:")
 print(df.isnull().sum())
 
-# ── 4. DATA PREPROCESSING ────────────────────────────────────
-# Create a new feature: Car Age
+# ──  DATA PREPROCESSING ─────────
 df["Car_Age"] = 2024 - df["Year"]
-
-# Drop columns not needed for prediction
 df.drop(["Car_Name", "Year"], axis=1, inplace=True)
 
-# Encode categorical columns (Label Encoding)
 df["Fuel_Type"]     = df["Fuel_Type"].map({"Petrol": 0, "Diesel": 1, "CNG": 2})
 df["Selling_type"]  = df["Selling_type"].map({"Dealer": 0, "Individual": 1})
 df["Transmission"]  = df["Transmission"].map({"Manual": 0, "Automatic": 1})
@@ -52,7 +44,7 @@ print("\n✅ Preprocessing done!")
 print("Encoded dataset sample:")
 print(df.head())
 
-# ── 5. VISUALIZATIONS ────────────────────────────────────────
+# ── VISUALIZATIONS ───────────
 fig, axes = plt.subplots(2, 2, figsize=(12, 9))
 fig.suptitle("Car Price Prediction — Data Insights", fontsize=15, fontweight="bold")
 
@@ -89,25 +81,25 @@ plt.savefig("eda_plots.png", dpi=150, bbox_inches="tight")
 plt.close()
 print("\n📊 EDA plots saved → eda_plots.png")
 
-# ── 6. FEATURE & TARGET SPLIT ────────────────────────────────
+# ── FEATURE & TARGET SPLIT ───────────
 X = df.drop("Selling_Price", axis=1)
 y = df["Selling_Price"]
 
 print(f"\n🎯 Features: {list(X.columns)}")
 print(f"   Target  : Selling_Price")
 
-# ── 7. TRAIN / TEST SPLIT ────────────────────────────────────
+# ── TRAIN / TEST SPLIT ───────────────
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 print(f"\n🔀 Train size: {X_train.shape[0]}  |  Test size: {X_test.shape[0]}")
 
-# ── 8. TRAIN MODEL ───────────────────────────────────────────
+# ── TRAIN MODEL ───────────────────
 model = RandomForestRegressor(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 print("\n🤖 Random Forest model trained!")
 
-# ── 9. EVALUATE MODEL ────────────────────────────────────────
+# ── EVALUATE MODEL ─────────────
 y_pred = model.predict(X_test)
 
 r2  = r2_score(y_test, y_pred)
@@ -120,7 +112,7 @@ print(f"   R² Score (Accuracy)  : {r2:.4f}  ({r2*100:.2f}%)")
 print(f"   Mean Absolute Error  : ₹ {mae:.4f} Lakhs")
 print("=" * 45)
 
-# ── 10. ACTUAL vs PREDICTED PLOT ─────────────────────────────
+# ── ACTUAL vs PREDICTED PLOT ──────
 plt.figure(figsize=(7, 5))
 plt.scatter(y_test, y_pred, alpha=0.7, color="royalblue", edgecolors="white", linewidths=0.4)
 plt.plot([y_test.min(), y_test.max()],
@@ -134,7 +126,7 @@ plt.savefig("actual_vs_predicted.png", dpi=150, bbox_inches="tight")
 plt.close()
 print("📊 Actual vs Predicted plot saved → actual_vs_predicted.png")
 
-# ── 11. FEATURE IMPORTANCE ───────────────────────────────────
+# ── FEATURE IMPORTANCE ───────
 importances = pd.Series(model.feature_importances_, index=X.columns).sort_values(ascending=True)
 
 plt.figure(figsize=(7, 5))
@@ -146,14 +138,14 @@ plt.savefig("feature_importance.png", dpi=150, bbox_inches="tight")
 plt.close()
 print("📊 Feature importance plot saved → feature_importance.png")
 
-# ── 12. PREDICT ON NEW DATA ──────────────────────────────────
+# ──  PREDICT ON NEW DATA ──────
 print("\n🚗 Sample Prediction:")
 sample = pd.DataFrame({
     "Present_Price": [6.0],
     "Driven_kms":    [40000],
-    "Fuel_Type":     [0],        # 0 = Petrol
-    "Selling_type":  [0],        # 0 = Dealer
-    "Transmission":  [0],        # 0 = Manual
+    "Fuel_Type":     [0],        
+    "Selling_type":  [0],        
+    "Transmission":  [0],      
     "Owner":         [0],
     "Car_Age":       [5]
 })
