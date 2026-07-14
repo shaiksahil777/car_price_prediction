@@ -17,19 +17,19 @@ print("=" * 55)
 
 df = pd.read_csv("car_data.csv")
 
-print("\n📦 Dataset loaded successfully!")
+print("\n Dataset loaded successfully!")
 print(f"   Rows: {df.shape[0]}  |  Columns: {df.shape[1]}")
 print("\nFirst 5 rows:")
 print(df.head())
 
 # ──  BASIC DATA EXPLORATION ───────
-print("\n📊 Dataset Info:")
+print("\n Dataset Info:")
 print(df.info())
 
-print("\n📈 Statistical Summary:")
+print("\n Statistical Summary:")
 print(df.describe())
 
-print("\n🔍 Missing Values:")
+print("\n Missing Values:")
 print(df.isnull().sum())
 
 # ──  DATA PREPROCESSING ─────────
@@ -40,7 +40,7 @@ df["Fuel_Type"]     = df["Fuel_Type"].map({"Petrol": 0, "Diesel": 1, "CNG": 2})
 df["Selling_type"]  = df["Selling_type"].map({"Dealer": 0, "Individual": 1})
 df["Transmission"]  = df["Transmission"].map({"Manual": 0, "Automatic": 1})
 
-print("\n✅ Preprocessing done!")
+print("\n Preprocessing done!")
 print("Encoded dataset sample:")
 print(df.head())
 
@@ -79,25 +79,25 @@ axes[1, 1].set_title("Feature Correlation Heatmap")
 plt.tight_layout()
 plt.savefig("eda_plots.png", dpi=150, bbox_inches="tight")
 plt.close()
-print("\n📊 EDA plots saved → eda_plots.png")
+print("\n EDA plots saved → eda_plots.png")
 
 # ── FEATURE & TARGET SPLIT ───────────
 X = df.drop("Selling_Price", axis=1)
 y = df["Selling_Price"]
 
-print(f"\n🎯 Features: {list(X.columns)}")
+print(f"\n Features: {list(X.columns)}")
 print(f"   Target  : Selling_Price")
 
 # ── TRAIN / TEST SPLIT ───────────────
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
-print(f"\n🔀 Train size: {X_train.shape[0]}  |  Test size: {X_test.shape[0]}")
+print(f"\n Train size: {X_train.shape[0]}  |  Test size: {X_test.shape[0]}")
 
 # ── TRAIN MODEL ───────────────────
 model = RandomForestRegressor(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
-print("\n🤖 Random Forest model trained!")
+print("\n Random Forest model trained!")
 
 # ── EVALUATE MODEL ─────────────
 y_pred = model.predict(X_test)
@@ -124,7 +124,7 @@ plt.legend()
 plt.tight_layout()
 plt.savefig("actual_vs_predicted.png", dpi=150, bbox_inches="tight")
 plt.close()
-print("📊 Actual vs Predicted plot saved → actual_vs_predicted.png")
+print(" Actual vs Predicted plot saved → actual_vs_predicted.png")
 
 # ── FEATURE IMPORTANCE ───────
 importances = pd.Series(model.feature_importances_, index=X.columns).sort_values(ascending=True)
@@ -136,10 +136,10 @@ plt.xlabel("Importance Score")
 plt.tight_layout()
 plt.savefig("feature_importance.png", dpi=150, bbox_inches="tight")
 plt.close()
-print("📊 Feature importance plot saved → feature_importance.png")
+print(" Feature importance plot saved → feature_importance.png")
 
 # ──  PREDICT ON NEW DATA ──────
-print("\n🚗 Sample Prediction:")
+print("\n Sample Prediction:")
 sample = pd.DataFrame({
     "Present_Price": [6.0],
     "Driven_kms":    [40000],
@@ -154,4 +154,4 @@ predicted_price = model.predict(sample)[0]
 print(f"   Input  → Present Price: ₹6L | Driven: 40,000 km | Age: 5 yrs | Petrol | Manual")
 print(f"   Output → Predicted Selling Price: ₹ {predicted_price:.2f} Lakhs")
 
-print("\n✅ Project complete! All outputs saved.")
+print("\n Project complete! All outputs saved.")
