@@ -4,7 +4,7 @@ A beginner-friendly Machine Learning project that predicts the **selling price o
 
 ---
 
-## 📌 Project Overview
+##  Project Overview
 
 The price of a used car depends on many factors — brand reputation, fuel type, kilometers driven, age of the car, and more. This project builds a **Random Forest Regression model** to predict car selling prices with high accuracy.
 
@@ -27,7 +27,7 @@ car_price_prediction/
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 | Column | Description |
 |---|---|
@@ -43,7 +43,7 @@ car_price_prediction/
 
 ---
 
-## ⚙️ Steps in the Project
+##  Steps in the Project
 
 1. **Import Libraries** — pandas, numpy, sklearn, matplotlib, seaborn
 2. **Load Dataset** — 301 rows, 9 columns
@@ -67,7 +67,7 @@ car_price_prediction/
 
 ---
 
-## 🧰 Technologies Used
+##  Technologies Used
 
 - Python 3
 - Pandas
@@ -91,7 +91,7 @@ python car_price_prediction.py
 ```
 
 ---
-## 👨‍💻 Author
+##  Author
 
 **Shaik Sahil**
 
