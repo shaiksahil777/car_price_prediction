@@ -81,9 +81,7 @@ car_price_prediction/
 ## 🚀 How to Run
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/your-username/car_price_prediction.git
-cd car_price_prediction
+git clone https://github.com/shaiksahil777/car_price_prediction.git
 
 # 2. Install dependencies
 pip install pandas scikit-learn matplotlib seaborn
@@ -93,9 +91,11 @@ python car_price_prediction.py
 ```
 
 ---
+## 👨‍💻 Author
 
-## 🙋 Author
+**Shaik Sahil**
 
-**Sk Sahil**  
-B.Tech CSE | GCET  
-GitHub: [shaiksahil-123](https://github.com/shaiksahil-123)
+B.Tech CSE | Geethanjali College of Engineering and Technology
+
+- GitHub: https://github.com/shaiksahil777
+- LinkedIn: https://www.linkedin.com/in/shaik-sahil-867a5a346/
